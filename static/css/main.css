@@ -1,0 +1,22 @@
+body {
+    text-align: center;
+}
+
+h1 {
+    margin: 35px auto;
+}
+
+.page-content {
+    margin: auto;
+}
+
+input {
+    width: 100%;
+    border-radius: 4px;
+    margin: 10px auto;
+}
+
+button.game-starter {
+    width: 100%;
+    margin: 10px auto;
+}
