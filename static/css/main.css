@@ -25,13 +25,12 @@ footer {
     width: 75%;
     margin: auto;
     padding: 10px;
-    background-color: #d5d5d5;
+    border: 1px solid darkcyan;
     border-radius: 4px;
-
 }
 
 a {
-    color: deepskyblue;
+    color: darkcyan;
     font-weight: bold;
     text-decoration: none;
 }
@@ -39,4 +38,17 @@ a {
 a:hover {
     text-decoration: underline;
     color: deepskyblue;
+}
+
+.memory-card {
+    border: 1px solid white;
+    background-color: azure;
+    padding: 2px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: darkcyan;
+    font-size: 35px;
+    border-radius: 4px;
 }
