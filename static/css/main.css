@@ -1,9 +1,11 @@
 body {
     text-align: center;
+    color: #02111b;
 }
 
 h1 {
     margin: 35px auto;
+    color: #02111b;
 }
 
 .page-content {
@@ -27,6 +29,7 @@ footer {
     padding: 10px;
     border: 1px solid darkcyan;
     border-radius: 4px;
+    background-color: white;
 }
 
 a {
@@ -43,12 +46,20 @@ a:hover {
 .memory-card {
     border: 1px solid white;
     background-color: azure;
-    padding: 2px;
+    padding: 50px;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: darkcyan;
     font-size: 35px;
-    border-radius: 4px;
+    border-radius: 5px;
+}
+
+.memory-card.paired {
+    background-color: #b2ffc9;
+}
+
+div.modal-body h3 {
+    margin: 10px;
 }

@@ -35,9 +35,62 @@ function randomizeArray(arrayToRandomize) {
     return randomizedArray;
 }
 
-function showCardSymbol() {
-    var symbol = this.memorySymbol
-    this.getElementsByTagName("i")[0].setAttribute("class", symbol);
+function showCardSymbol(card) {
+    var symbol = card.memorySymbol;
+    card.getElementsByTagName("i")[0].setAttribute("class", symbol);
+}
+
+function getCardByStatus(status) {
+    var allCards = document.getElementsByClassName("memory-card");
+    var cardsWithStatus = [];
+    for (let i = 0; i < allCards.length; i++) {
+        if (allCards[i].cardStatus === status) {
+            cardsWithStatus.push(allCards[i]);
+        }
+    }
+    return cardsWithStatus;
+}
+
+function coverCards(arrayOfActiveCards) {
+    for (let i = 0; i < arrayOfActiveCards.length; i++) {
+        arrayOfActiveCards[i].getElementsByTagName("i")[0].setAttribute("class", "fas fa-question-circle");
+        arrayOfActiveCards[i].cardStatus = "covered";
+    }
+}
+
+function win() {
+    $("#win-modal").modal();
+}
+
+function reloadPage() {
+    window.location.reload();
+}
+
+function goToIndex() {
+    window.location.replace(window.location.origin);
+}
+
+function lookForPairs() {
+    showCardSymbol(this);
+    this.cardStatus = "active";
+    var activeCards = getCardByStatus("active");
+    var numberOfActiveCards = activeCards.length;
+    const length_of_pair = 2;
+    if (numberOfActiveCards === length_of_pair) {
+        if (activeCards[0].memorySymbol === activeCards[1].memorySymbol) {
+            for (let i = 0; i < length_of_pair; i++) {
+                activeCards[i].cardStatus = "paired";
+                activeCards[i].classList.add("paired");
+                activeCards[i].removeEventListener("click", lookForPairs);
+            }
+        } else {
+            setTimeout(coverCards.bind(null, activeCards), 800);
+        }
+    }
+    var cardsLeft = getCardByStatus("covered").length;
+    if (cardsLeft === 0) {
+        setTimeout(win, 500);
+    }
 }
 
 function initializeGame() {
@@ -65,10 +118,16 @@ function initializeGame() {
     var symbolsInGame = getRandomElements(listOfCardClasses, numberOfSymbols);
     var cardClassesInOrder = randomizeArray(symbolsInGame.concat(symbolsInGame));
     var listOfCards = document.getElementsByClassName("memory-card");
-    for (var i = 0; i < numberOfSymbols * 2; i++) {
+    for (let i = 0; i < numberOfSymbols * 2; i++) {
         listOfCards[i].memorySymbol = cardClassesInOrder[i];
-        listOfCards[i].addEventListener("click", showCardSymbol);
+        listOfCards[i].cardStatus = "covered";
+        listOfCards[i].addEventListener("click", lookForPairs);
     }
 }
 
-initializeGame();
+
+function main() {
+    initializeGame();
+}
+
+main();
