@@ -1,3 +1,12 @@
+function timer() {
+    var timerElement = document.getElementById("timer");
+    var timePassed = 0;
+    setInterval(function () {
+        timePassed++;
+        timerElement.innerHTML =  Math.floor(timePassed / 60) + ":" + timePassed % 60;
+    }, 1000)
+}
+
 function getNumberOfSymbols() {
     var game = document.getElementById("current-game");
     return Number(game.dataset.numberOfSymbols);
@@ -127,6 +136,7 @@ function initializeGame() {
 
 
 function main() {
+    window.onload = timer();
     initializeGame();
 }
 

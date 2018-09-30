@@ -63,3 +63,7 @@ a:hover {
 div.modal-body h3 {
     margin: 10px;
 }
+
+div#timer {
+    height: 50px;
+}

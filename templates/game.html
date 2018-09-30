@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
 
 {% block content %}
+    <div class="container" id="timer"></div>
+
     <div class="container">
         <div class="row" id="current-game" data-number-of-symbols="{{ number_of_symbols }}">
             {% for k in range(1, number_of_symbols * 2 + 1) %}
